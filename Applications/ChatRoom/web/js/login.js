@@ -7,6 +7,7 @@ $(function(){
     $("#login-form").submit(function(e){
         e.preventDefault();
         $("#notice").fadeOut();
+        $("#notice").removeClass('alert-success').addClass('alert-danger')
         connect();
         return false;
     });
