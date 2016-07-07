@@ -19,21 +19,22 @@ use \Workerman\Autoloader;
 
 // 自动加载类
 require_once __DIR__ . '/../../Workerman/Autoloader.php';
+require_once 'Config/constants.php';
 Autoloader::setRootPath(__DIR__);
 
 // gateway 进程，这里使用Websocket进程，跟js做交互
-$gateway = new Gateway("Websocket://0.0.0.0:8282");
+$gateway = new Gateway(GATEWAY_WEBSOCKET_LINK);
 // gateway名称，status方便查看
-$gateway->name = 'ChatRoomGateway';
+$gateway->name = GATEWAY_NAME;
 // gateway进程数
-$gateway->count = 4;
+$gateway->count = GATEWAY_WEBSOCKET_COUNT;
 // 本机ip，分布式部署时使用内网ip
-$gateway->lanIp = '127.0.0.1';
+$gateway->lanIp = GATEWAY_LANIP;
 // 内部通讯起始端口，假如$gateway->count=4，起始端口为4000
 // 则一般会使用4000 4001 4002 4003 4个端口作为内部通讯端口
-$gateway->startPort = 2900;
+$gateway->startPort = GATEWAY_START_PORT;
 // 服务注册地址
-$gateway->registerAddress = '127.0.0.1:1238';
+$gateway->registerAddress = GATEWAY_REGISTER_ADDRESS;
 
 // 心跳间隔
 //$gateway->pingInterval = 10;

@@ -16,8 +16,9 @@ use \GatewayWorker\Register;
 
 // 自动加载类
 require_once __DIR__ . '/../../Workerman/Autoloader.php';
+require_once 'Config/constants.php';
 
-$register = new Register('text://0.0.0.0:1238');
+$register = new Register(REGISTER_LINK);
 
 // 如果不是在根目录启动，则运行runAll方法
 if(!defined('GLOBAL_START')) {

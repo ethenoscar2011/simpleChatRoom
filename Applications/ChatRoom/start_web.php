@@ -15,10 +15,11 @@ use \GatewayWorker\BusinessWorker;
 use \Workerman\Autoloader;
 
 require_once __DIR__.'/../../Workerman/Autoloader.php';
+require_once 'Config/constants.php';
 Autoloader::setRootPath(__DIR__);
 
-$web = new  WebServer("http://0.0.0.0:55155");
-$web->count = 4;
+$web = new  WebServer(WEBSERVER_LINK);
+$web->count = WEBSERVER_COUNT;
 $web->addRoot('localhost',__DIR__.'/web');
 
 if(!defined('GLOBAL_START')){

@@ -19,17 +19,18 @@ use \Workerman\Autoloader;
 
 // 自动加载类
 require_once __DIR__ . '/../../Workerman/Autoloader.php';
+require_once 'Config/constants.php';
 Autoloader::setRootPath(__DIR__);
 
 
 // bussinessWorker 进程
 $worker = new BusinessWorker();
 // worker名称
-$worker->name = 'ChatRoomBusiness';
+$worker->name = BUSINESS_WORKER_NAME;
 // bussinessWorker进程数量
-$worker->count = 4;
+$worker->count = BUSINESS_WORKER_COUNT;
 // 服务注册地址
-$worker->registerAddress = '127.0.0.1:1238';
+$worker->registerAddress = BUSINESS_WOKER_REGISTER_ADDRESS;
 
 // 如果不是在根目录启动，则运行runAll方法
 if(!defined('GLOBAL_START')) {

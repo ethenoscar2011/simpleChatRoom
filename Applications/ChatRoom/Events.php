@@ -20,7 +20,13 @@
 //declare(ticks=1);
 
 use \GatewayWorker\Lib\Gateway;
-require_once 'web/funcs/functions.php';
+require_once 'funcs/functions.php';
+require_once __DIR__.'/../../GlobalData/Client.php';
+require_once 'Config/constants.php';
+use GlobalData\Client;
+use \GatewayWorker\Lib\Db;
+
+
 
 /**
  * 主逻辑
@@ -67,7 +73,19 @@ class Events
                 $username = $message_data['username'];
                 $password = $message_data['password'];
                 if($username == '463232672@qq.com' && $password == '123456'){
+                    $uid = 1;
                     Gateway::sendToCurrentClient(create_response('login',true,'登录成功'));
+                    //绑定客户端和用户的id,方便后期通过用户id发送推送消息
+                    Gateway::bindUid($client_id,$uid);
+                    //记住登录状态
+                    $global = new Client(GLOBALDATA_CLIENT);
+                    $user_session = array(
+                        'username' => $username,
+                        'id' => $uid,
+                        'sex' => '男'
+                    );
+                    $global->$client_id = $user_session;
+                    var_export($global->$client_id);
                 }else{
                     Gateway::sendToCurrentClient(create_response('login',false,'账户名或者密码错误'));
                 }
