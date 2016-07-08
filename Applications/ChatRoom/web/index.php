@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>小龟龟聊天室-Hign翻天</title>
     <script>
-        window.location.href = '/login.php';
+        window.location.href = '/chatroom.php';
     </script>
 </head>
 <body>
